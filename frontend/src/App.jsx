@@ -1,26 +1,22 @@
-import Login from "./Login"
+import LoginSignup from "./Login"
+import Home from "./Home"
 import "./App.css"
-import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Signup from "./Signup";
 
 function App() {
   return (
     <>
      <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginSignup />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
     </>
   )
 }
-function Home() {
-  return (
-    <div>
-      <h2>Welcome Home 🎉</h2>
-      <p>You are logged in successfully.</p>
-    </div>
-  );
-}
+
 
 export default App

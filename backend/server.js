@@ -20,9 +20,9 @@ db.connect(err => {
     }
 });
 app.post("/login", (req, res) => {
-    const { email, password } = req.body;
+    const { identifier, password } = req.body;
     const q = "SELECT * FROM users WHERE email = ? AND password = ?";
-    db.query(q, [email, password], (err, results) => {
+    db.query(q, [identifier, password], (err, results) => {
         if (err) return res.json({ success: false, error: err });
         if (results.length > 0) {
             return res.json({ success: true });
