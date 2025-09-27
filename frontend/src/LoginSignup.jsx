@@ -9,7 +9,7 @@ const LoginSignup = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
     if (!password || (isLogin && !identifier) || (!isLogin && (!name || !email))) {
@@ -17,10 +17,10 @@ const LoginSignup = () => {
       return;
     }
     try {
-      const response = await fetch(
+      const response =await fetch(
         isLogin
           ? "http://localhost:8800/login"
-          : "http://localhost:8800/signup",
+           : "http://localhost:8800/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -36,7 +36,7 @@ const LoginSignup = () => {
           navigate("/");
         }, 1000);
       } else {
-        console.log("error");
+        console.log(`Invalid User or Password :${identifier}`);
       }
     } catch (error) {
       alert(error);
@@ -46,14 +46,14 @@ const LoginSignup = () => {
   return (
     <div className="outer1">
       <h3 style={{ paddingTop: "40px" }}>{isLogin ? "Login" : "Signup"}</h3>
-      <form className="outer2" onSubmit={handleSubmit}>
+      <form className="outer2">
         {!isLogin && (
           <>
             <label htmlFor="name">Name:</label>
-            <input type="text" value={value} onChange={(e) => setName(e.target.value)} />
+            <input type="text" onChange={(e) => setName(e.target.value)} />
             <br />
             <label htmlFor="email">Email:</label>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="text" onChange={(e) => setEmail(e.target.value)} />
             <br />
           </>
         )}
@@ -72,7 +72,7 @@ const LoginSignup = () => {
         <label htmlFor="password">Password:</label>
         <input type="password"  onChange={(e) => setPassword(e.target.value)} />
         <br />
-        <button>{isLogin ? "Login" : "Signup"}</button>
+        <button onClick={handleSubmit}>{isLogin ? "Login" : "Signup"}</button>
       </form>
       <p className="foot">
         {isLogin ? (
